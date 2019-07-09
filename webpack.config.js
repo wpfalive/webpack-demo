@@ -17,10 +17,22 @@ module.exports = {
         }
       }
     }, {
+      test: /\.(eot|ttf|svg)$/,
+      use: {
+        // 借助file-loader, 把这些文件从src移动到dist目录下
+        loader: 'file-loader',
+      }
+    },{
       test: /\.scss$/,
       use: [
         'style-loader',
-        'css-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2,
+            // modules: true,
+          }
+        },
         'sass-loader',
         'postcss-loader',
       ],
