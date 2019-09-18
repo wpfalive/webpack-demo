@@ -30,7 +30,7 @@ module.exports = {
           loader: 'css-loader',
           options: {
             importLoaders: 2,
-            // modules: true,
+            // modules: true, // 用于 import style from 'index.scss'这样的模块化css
           }
         },
         'sass-loader',
