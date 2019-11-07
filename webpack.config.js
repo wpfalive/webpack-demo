@@ -1,7 +1,10 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
+  devtool: 'none',
   entry: {
     main: './src/index.js'
   },
@@ -38,6 +41,16 @@ module.exports = {
       ],
     }]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
+    new CleanWebpackPlugin({
+      dry: true,
+      cleanOnceBeforeBuildPatterns: ['**/*', '**'],
+      verbose: true,
+    }),
+  ],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'bundle'),

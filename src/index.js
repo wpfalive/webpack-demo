@@ -1,4 +1,3 @@
-
-const root = document.getElementById('root')
-import './index.scss'
-root.innerHTML = '<div class="iconfont iconganlanqiu"></div>'
+console.log('sou2rce map')
+const root = document.querySelector('#root')
+root.innerHTML = `<div>123</div>`
