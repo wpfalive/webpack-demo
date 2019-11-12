@@ -8,6 +8,10 @@ module.exports = {
   entry: {
     main: './src/index.js'
   },
+  devServer: {
+    contentBase: './dist',
+    open: true
+  },
   module: {
     rules: [{
       test: /\.(png|jpe?g|gif)$/,
@@ -52,6 +56,7 @@ module.exports = {
     }),
   ],
   output: {
+    publicPath: '/',
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'bundle'),
   }
