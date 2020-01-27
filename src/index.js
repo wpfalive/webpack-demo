@@ -1,32 +1,24 @@
-// import './style.css'
+import { isNumber, isNull } from 'lodash'
+// import _ from 'lodash'
+function add (a, b) {
+  return isNumber(a) ? (a + b) : (a - b)
+} 
 
-// var btn = document.createElement('button')
-// btn.innerHTML = 'click'
-// document.body.appendChild(btn)
-// btn.onclick = function () {
-//   var div = document.createElement('div')
-//   div.innerHTML = 'item'
-//   document.body.appendChild(div)
-// }
-// import counter from './counter'
-// import number from './number'
-// counter()
-// number()
-// console.log(1)
-// console.log(module)
-// if (module.hot) {
-//   module.hot.accept('./number', () => {
-//     document.body.removeChild(document.getElementById('number'))
-//     number()
-//    })
+// var element = document.createElement('div')
+// element.innerHTML = _.join(['foo', 'bar'], '-')
+// document.body.appendChild(element)
+
+// function getComponent() {
+//   return import(/* webpackChunkName:'lodash' */ 'lodash').then(({ default: _ }) => {
+//     var element = document.createElement('div')
+//     element.innerHTML = _.join(['foo', 'bar'], '-')
+//     return element
+//   })
 // }
 
-import '@babel/polyfill'
-const arr = [
-  new Promise(() => {}),
-  new Promise(() => {}),
-]
+// getComponent().then(element => {
+//   document.body.appendChild(element)
+// })
 
-arr.map(item => {
-  console.log(item)
-})
+import test from './test'
+console.log(test.name)
