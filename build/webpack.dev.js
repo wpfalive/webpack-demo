@@ -13,12 +13,37 @@ const devConfig = {
     hot: true,
     // hotOnly: true
   },
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2,
+            // modules: true, // 用于 import style from 'index.scss'这样的模块化css
+          }
+        },
+        'sass-loader',
+        'postcss-loader',
+      ],
+    }, {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+          'postcss-loader',
+        ],
+      }]
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
-  optimization: {
-    usedExports: true
-  },
+  // optimization: {
+  //   usedExports: true
+  // },
 }
 
 module.exports = merge(baseConfig, devConfig)

@@ -4,8 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    // main: './src/index.js'
-    main: './src/foo.js'
+    main: './src/index.js'
+    // main: './src/foo.js'
   },
   module: {
     rules: [{
@@ -28,28 +28,6 @@ module.exports = {
         // 借助file-loader, 把这些文件从src移动到dist目录下
         loader: 'file-loader',
       }
-    }, {
-      test: /\.scss$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 2,
-            // modules: true, // 用于 import style from 'index.scss'这样的模块化css
-          }
-        },
-        'sass-loader',
-        'postcss-loader',
-      ],
-    }, {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader',
-        'postcss-loader',
-      ],
     }]
   },
   plugins: [
@@ -59,6 +37,7 @@ module.exports = {
     new CleanWebpackPlugin(),
   ],
   optimization: {
+    usedExports: true,
     splitChunks: {
       chunks: 'all', // async-只对异步引入的库进行代码分割 all-同步和异步引入的库都进行分割 initial对同步引入的库做代码分割
       minSize: 30000, // 引入的库大于 30kb，才会做代码分割 
@@ -88,6 +67,7 @@ module.exports = {
   output: {
     // publicPath: '/',
     filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, '../dist'),
   }
 }
