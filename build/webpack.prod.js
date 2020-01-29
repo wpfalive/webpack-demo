@@ -2,6 +2,7 @@ const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const path = require('path')
 
 const prodConfig = {
   mode: 'production',
@@ -37,8 +38,14 @@ const prodConfig = {
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin({})]
   },
+  performance: false,
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, '../dist'),
+  }
   // cheap 不要包含列信息 只需要行信息，同时不要对loader里面的代码生成source-map
-  devtool: 'cheap-module-source-map',
+  // devtool: 'cheap-module-source-map',
 }
 
 module.exports = merge(baseConfig, prodConfig)

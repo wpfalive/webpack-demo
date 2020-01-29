@@ -1,4 +1,9 @@
-import './style.css'
-import './style1.css';
+// import _ from 'lodash'
+// import $ from 'jquery'
+// import { ui } from './jquery.ui'
 
-console.log(1)
+// ui()
+// const dom = $('<div>')
+// dom.html(_join(['foo', 'bar'], '---'))
+// $('body').append(dom)
+console.dir(this === window)

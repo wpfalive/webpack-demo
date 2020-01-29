@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base')
+const path = require('path')
 
 const devConfig = {
   mode: 'development',
@@ -44,6 +45,12 @@ const devConfig = {
   // optimization: {
   //   usedExports: true
   // },
+  output: {
+    // publicPath: '/',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
+    path: path.resolve(__dirname, '../dist'),
+  }
 }
 
 module.exports = merge(baseConfig, devConfig)

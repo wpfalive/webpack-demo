@@ -1,6 +1,6 @@
-const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -11,7 +11,11 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
+      use: [{
+        loader: 'babel-loader',
+      }, {
+        loader: 'imports-loader?this=>window'
+      }]
     }, {
       test: /\.(png|jpe?g|gif)$/,
       use: {
@@ -35,6 +39,10 @@ module.exports = {
       template: 'src/index.html'
     }),
     new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      _join: ['lodash', 'join']
+    })
   ],
   optimization: {
     usedExports: true,
@@ -53,7 +61,7 @@ module.exports = {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10, // 一个库放在哪个组，是根据priority来决定的。值越大，优先级越高
-          // filename: 'vendors.js'
+          name: 'vendors'
         },
         default: {
           // minChunks: 2,
@@ -63,11 +71,5 @@ module.exports = {
         },
       }
     }
-  },
-  output: {
-    // publicPath: '/',
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
-    path: path.resolve(__dirname, '../dist'),
   }
 }
